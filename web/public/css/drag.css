@@ -9,3 +9,14 @@ table {
 .ui-draggable, .ui-droppable {
 	background-position: top;
 }
+
+#task-pool, #users-continer {
+	/*border: 1px solid black;*/
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+#users-continer ul {
+	float: left;
+	margin-right: 30px;
+}
