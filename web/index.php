@@ -12,7 +12,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->get('/', function() use($app) { 
     // return 'Hello '.$app->escape($name); 
-    // return "Hello";
     return $app['twig']->render('index.twig', []);
 }); 
 
