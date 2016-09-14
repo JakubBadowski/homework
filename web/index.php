@@ -1,10 +1,11 @@
 <?php
 
 require_once __DIR__.'/../vendor/autoload.php'; 
-
+require_once __DIR__.'/../config.php';
 
 $app = new Silex\Application(); 
 
+// Change to FALSE when in production
 $app['debug'] = true;
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -14,14 +15,15 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_mysql',
-        'host'     => 'localhost',
-        'dbname'   => 'homework',
-        'user'     => 'homework',
-        'password' => 'vMEpOgOfadxQkffl',
+        'host'     =>  DbConfig::$host,
+        'dbname'   =>  DbConfig::$dbname,
+        'user'     =>  DbConfig::$user,
+        'password' =>  DbConfig::$password,
         'charset'  => 'utf8mb4',
     ),
 ));
 
+// Main page
 $app->get('/', function() use($app) { 
     // return 'Hello '.$app->escape($name); 
     return $app['twig']->render('index.twig', []);
@@ -58,35 +60,25 @@ $app->post('/save-changes', function(Request $request) use ($app) {
 	// Data from AJAX
 	// $inputData = $request->get('list');
 
+	// TODO: Use foreach loop
+
 	$user1 = [];
 	parse_str($_POST['user1'], $user1);
-
-	// echo "user 1 = ";
-	// print_r($user1);
-
 
 	$user2 = [];
 	parse_str($_POST['user2'], $user2);
 
-	// echo "user 2 = ";
-	// print_r($user2);
-
 	$user3 = [];
 	parse_str($_POST['user3'], $user3);
-
-	// echo "user 3 = ";
-	// print_r($user3);
-
 
 	// Update DB
 
 	try {
+		// TODO: Make transaction
 		// Clear table
 		$sql = "TRUNCATE TABLE user_task";
-		// $app['db']->executeUpdate($sql);
 		$stmt = $app['db']->prepare($sql);
 		$stmt->execute();
-
 
 		// Add new racords
 		foreach ($user1['task'] as $item) {
@@ -100,14 +92,9 @@ $app->post('/save-changes', function(Request $request) use ($app) {
 		foreach ($user3['task'] as $item) {
 			$app['db']->insert('user_task', [ 'user_id' => 3, 'task_id' => (int) $item ]);
 		}
-
-    	// $app['db']->fetchAll("SELECT * from user1");
-
-		
 	} catch (Exception $e) {
 		return $app->json( ['status' => 'fail', 'message' => 'sth wrong on server side !'] );
 	}
-
 
 	$outputData = ['status' => 'ok', 'test' => $user1];
 
