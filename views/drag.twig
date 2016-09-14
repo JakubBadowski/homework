@@ -1,16 +1,14 @@
 {% extends "dragBase.twig" %}
 
 {% block content %}
-<div id="task-pool">
-  <ul id="sortable1" class="connectedSortable">
 
-    {# Pokaż pozostałe #}
+ <div id="task-pool">
+  {# Pokaż pozostałe #}
+  <ul id="sortable1" class="connectedSortable">
     {% for item in taskList.others %}
       <li class="ui-state-default"  id="task_{{ item.id }}">{{ item.name }}</li>
     {% endfor %}
   </ul>
- 
-
  </div>
 
  <div id="users-continer">
@@ -36,7 +34,6 @@
       {% endfor %}
       {# <li class="ui-state-highlight">Item 1</li> #}
     </ul>
-
  </div>
 
 {% endblock %}
