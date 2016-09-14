@@ -30,7 +30,42 @@
   <script>
   $( function() {
     $( "#sortable1, #sortable2, #sortable3, #sortable4" ).sortable({
-      connectWith: ".connectedSortable"
+      connectWith: ".connectedSortable",
+      update: function(event, ui) {
+        // var postData = $(this).sortable('serialize');
+        // console.log(postData);
+
+        // Sprawdzam
+        var user1 = $("#sortable2").sortable('serialize');
+        var user2 = $("#sortable3").sortable('serialize');
+        var user3 = $("#sortable4").sortable('serialize');
+
+
+        // console.log(user1);
+        // console.log(user2);
+        // console.log(user3);
+
+        // return;
+
+
+        // AJAX
+        $.post('/save-changes', {user1: user1, user2: user2, user3: user3}, function(o) {
+          if (o.status === 'ok') {
+            
+            console.log(o);
+
+          } else {
+            alert(o.message);
+          }
+        }, 'json')
+        .fail(function() {
+          alert('Sth wrong with AJAX');
+        })
+
+      },
+      // change: function() {
+      //   console.log('inny');
+      // }
     }).disableSelection();
   } );
   </script>
@@ -39,7 +74,7 @@
  
  {% block content %}
 
- 
+
  {% endblock %}
  
 </body>

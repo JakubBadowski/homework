@@ -6,7 +6,7 @@
 
     {# Pokaż pozostałe #}
     {% for item in taskList.others %}
-      <li class="ui-state-default">{{ item.name }}</li>
+      <li class="ui-state-default"  id="task_{{ item.id }}">{{ item.name }}</li>
     {% endfor %}
   </ul>
  
@@ -18,21 +18,21 @@
     {# Show tasks of user 1 #}
     <ul id="sortable2" class="connectedSortable">
       {% for item in taskList.user1 %}
-        <li class="ui-state-default">{{ item.name }}</li>
+        <li class="ui-state-default" id="task_{{ item.id }}">{{ item.name }}</li>
       {% endfor %}
     </ul>
  
     {# Show tasks of user 2 #}
     <ul id="sortable3" class="connectedSortable">
       {% for item in taskList.user2 %}
-        <li class="ui-state-default">{{ item.name }}</li>
+        <li class="ui-state-default" id="task_{{ item.id }}">{{ item.name }}</li>
       {% endfor %}
     </ul>
 
     {# Show tasks of user 3 #}
     <ul id="sortable4" class="connectedSortable">
       {% for item in taskList.user3 %}
-        <li class="ui-state-default">{{ item.name }}</li>
+        <li class="ui-state-default" id="task_{{ item.id }}">{{ item.name }}</li>
       {% endfor %}
       {# <li class="ui-state-highlight">Item 1</li> #}
     </ul>
