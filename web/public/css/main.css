@@ -10,7 +10,7 @@ body {
 	background-position: top;
 }
 
-#sortable1, #user1, #user2, #user3 {
+#task-pool, #user1, #user2, #user3 {
 /*border: 1px solid #111;*/
 /*width: 242px;*/
 /*height: 400px;*/
@@ -21,7 +21,7 @@ padding: 5px 0 0 0;
 /*float: left;*/
 margin-right: 10px;
 }
-#sortable1 li, #user1 li, #user2 li, #user3 li {
+#task-pool li, #user1 li, #user2 li, #user3 li {
 margin: 0 5px 5px 5px;
 padding: 5px;
 font-size: 0.9em;

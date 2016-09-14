@@ -1,12 +1,12 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="row" id="task-pool">
+<div class="row">
   <div class="col-md-4 col-md-offset-4">
   	<div class="well">
   		<p>Task Pool</p>
 
-      <ul id="sortable1" class="connectedSortable">
+      <ul id="task-pool" class="connectedSortable">
         {% for item in taskList.others %}
           <li class="ui-state-default"  id="task_{{ item.id }}">{{ item.name }}</li>
         {% endfor %}

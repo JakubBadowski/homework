@@ -1,5 +1,5 @@
  $( function() {
-    $( "#sortable1, #user1, #user2, #user3" ).sortable({
+    $( "#task-pool, #user1, #user2, #user3" ).sortable({
       connectWith: ".connectedSortable",
       update: function(event, ui) {
         
